@@ -28,3 +28,16 @@ the terminal for the output which will show the exact URL and port)
 The VTAS application is now ready to use.
 Note: The XAMPP MySQL service must remain running while using VTAS. The Node.js
 server must also remain running in the VS Code terminal.
+
+
+User credentials:
+super admin account : superadmin@vtas.com
+password:  SuperAdmin123
+
+Admin:
+jd@vtas.co.za
+John@doe1
+
+Test user:
+d@gmail.com
+Daniel@1
