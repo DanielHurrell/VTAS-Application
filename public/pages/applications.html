@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTAS - Visa Applications</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VTAS</h1>
+        <p>Visa Tracking and Application System</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/pages/dashboard.html">Dashboard</a>
+        <a href="/pages/profile.html">My Profile</a>
+        <a href="/pages/applications.html">Visa Applications</a>
+        <a href="/auth/logout">Logout</a>
+    </nav>
+
+    <main>
+        <h2>Submit a Visa Application</h2>
+
+        <p id="passportInfo">Checking your passport details...</p>
+
+        <form id="applicationForm">
+            <label for="visa_type">Visa Type</label>
+            <select id="visa_type" name="visa_type" required>
+                <option value="">Select Visa Type</option>
+                <option value="Tourist Visa">Tourist Visa</option>
+                <option value="Business Visa">Business Visa</option>
+                <option value="Student Visa">Student Visa</option>
+                <option value="Work Visa">Work Visa</option>
+                <option value="Transit Visa">Transit Visa</option>
+            </select>
+
+            <label>Destination Country</label>
+            <p>South Africa</p>
+
+            <label for="documents">Supporting Documents</label>
+            <input
+                type="file"
+                id="documents"
+                name="documents"
+                accept=".pdf,.jpg,.jpeg,.png"
+                multiple
+            >
+
+            <small>
+                You can upload up to 5 documents.
+                Accepted formats: PDF, JPG and PNG.
+                Maximum size: 10MB per document.
+            </small>
+
+            <button type="submit" id="submitButton">
+                Submit Application
+            </button>
+        </form>
+
+        <p id="message"></p>
+
+        <hr>
+
+        <h2>My Applications</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Visa Type</th>
+                    <th>Destination</th>
+                    <th>Date Submitted</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="applicationList">
+                <tr>
+                    <td colspan="5">Loading applications...</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script src="/app.js" defer></script>
+    <script src="/applications.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTAS - Applicant Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VTAS</h1>
+        <p>Visa Tracking and Application System</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/pages/dashboard.html">Dashboard</a>
+        <a href="/pages/applications.html">My Visa Applications</a>
+        <a href="/pages/profile.html">My Profile</a>
+
+
+        <a href="/auth/logout">Logout</a>
+    </nav>
+
+    <main>
+        <h2>Applicant Dashboard</h2>
+        <p>Welcome to your VTAS dashboard.</p>
+
+        <section class="notifications-section">
+            <div class="notifications-heading">
+                <div>
+                    <h3>My Notifications</h3>
+                    <p>Updates about your visa applications and account.</p>
+                </div>
+
+                <span id="unreadCount" class="unread-summary"></span>
+            </div>
+
+            <div id="notificationsContainer" class="notifications-list">
+                <p>Loading your notifications...</p>
+            </div>
+
+            <div class="notifications-footer">
+                <button id="markAllReadButton" type="button" hidden>
+                    Mark all as read
+                </button>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>Quick Links</h3>
+
+            <p>
+                <a href="/pages/profile.html">
+                    Manage My Profile and Passport
+                </a>
+            </p>
+
+            <p>
+                <a href="/pages/applications.html">
+                    View or Submit Visa Applications
+                </a>
+            </p>
+        </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+    <script src="/dashboard.js" defer></script>
+
+</body>
+</html>

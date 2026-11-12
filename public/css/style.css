@@ -1,0 +1,681 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    margin: 0;
+    padding: 40px;
+}
+
+h1 {
+    color: #163a5f;
+}
+
+header {
+    background-color: #163a5f;
+    color: white;
+    padding: 20px;
+    margin: -40px -40px 30px -40px;
+}
+
+header h1 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+header p {
+    margin-top: 0;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+nav a {
+    color: #163a5f;
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #2874a6;
+}
+
+main {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+main h2 {
+    color: #163a5f;
+    margin-top: 0;
+}
+
+footer {
+    text-align: center;
+    color: #777777;
+    font-size: 14px;
+    margin-top: 30px;
+    padding: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+    color: #333333;
+}
+
+form input {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+form button {
+    background-color: #163a5f;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #2874a6;
+}
+
+/* ===== Admin tabs ===== */
+nav a.active {
+    border-bottom: 3px solid #163a5f;
+    padding-bottom: 4px;
+}
+
+/* ===== Report controls ===== */
+.report-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.report-controls select,
+.report-controls input,
+.report-controls button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    font-size: 14px;
+}
+
+.report-controls input {
+    width: 70px;
+}
+
+.report-controls button {
+    background-color: #163a5f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.report-controls button:hover {
+    background-color: #2874a6;
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #163a5f;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f4f6f9;
+}
+
+/* ===== Printing: only show the report ===== */
+@media print {
+    nav, .report-controls, footer {
+        display: none;
+    }
+}
+
+/* ===== Admin dashboard: summary boxes ===== */
+.summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background-color: #f4f6f9;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.summary-label {
+    display: block;
+    color: #777777;
+    font-size: 14px;
+}
+
+.summary-number {
+    display: block;
+    color: #163a5f;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* ===== Applications tab: review panel ===== */
+.review-panel {
+    border: 2px solid #163a5f;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fbfcfe;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.details-grid h4 {
+    margin-bottom: 8px;
+    color: #163a5f;
+}
+
+.details-grid p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.review-panel textarea {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    min-height: 70px;
+}
+
+.review-panel select {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#approvalFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#approvalFields[hidden] {
+    display: none;
+}
+
+/* Small "Review" buttons in the table */
+.small-button {
+    background-color: #163a5f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.small-button:hover {
+    background-color: #2874a6;
+}
+
+/* Grey "Close" button */
+.secondary-button {
+    background-color: #e0e4ea;
+    color: #333333;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Messages */
+.error-text {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.success-text {
+    color: #1e8449;
+    font-weight: bold;
+}
+
+
+
+/* ==============================
+   NOTIFICATION DASHBOARD
+================================ */
+
+.notifications-section {
+    margin-top: 25px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e6ea;
+    border-radius: 10px;
+}
+
+.notifications-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.notifications-heading h3 {
+    margin: 0 0 5px;
+    font-size: 21px;
+}
+
+.notifications-heading p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.unread-summary {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.unread-summary.has-unread {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.notification-card {
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #9ca3af;
+    border-radius: 8px;
+    padding: 16px;
+    background: #ffffff;
+}
+
+.notification-card.unread {
+    background: #f0f7ff;
+    border-left-color: #2563eb;
+}
+
+.notification-card.read {
+    background: #fafafa;
+}
+
+.notification-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.notification-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.notification-title h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.notification-indicator {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #2563eb;
+    flex-shrink: 0;
+}
+
+.notification-card.read .notification-indicator {
+    background: #d1d5db;
+}
+
+.notification-status {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 9px;
+    border-radius: 12px;
+}
+
+.status-unread {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-read {
+    background: #e5e7eb;
+    color: #6b7280;
+}
+
+.notification-message {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.notification-message p {
+    margin: 0;
+    line-height: 1.6;
+    color: #374151;
+    font-size: 14px;
+}
+
+.notification-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.notification-card-footer small {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.notifications-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.notifications-footer button,
+.notification-card .small-button {
+    padding: 8px 13px;
+    border: none;
+    border-radius: 5px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.notifications-footer button:hover,
+.notification-card .small-button:hover {
+    background: #1d4ed8;
+}
+
+.empty-notifications {
+    text-align: center;
+    padding: 35px 15px;
+    color: #6b7280;
+}
+
+.empty-notifications span {
+    font-size: 30px;
+}
+
+.empty-notifications h4 {
+    margin-bottom: 5px;
+    color: #374151;
+}
+
+
+/* ==============================
+   NOTIFICATION DROPDOWN
+================================ */
+
+.notification-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 360px;
+    max-width: calc(100vw - 30px);
+    max-height: 450px;
+    overflow-y: auto;
+
+    background: white;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 0;
+    z-index: 9999;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+.notification-dropdown[hidden] {
+    display: none;
+}
+
+.notification-dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.notification-dropdown-header strong {
+    font-size: 15px;
+}
+
+.notification-dropdown-header button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.dropdown-notification {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdown-notification.unread {
+    background: #eff6ff;
+}
+
+.dropdown-notification.read {
+    background: #ffffff;
+}
+
+.dropdown-notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.dropdown-notification-header strong {
+    font-size: 13px;
+}
+
+.dropdown-notification p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4b5563;
+}
+
+.dropdown-notification-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-notification-footer small {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.dropdown-notification-footer button {
+    border: none;
+    background: none;
+    color: #2563eb;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-notification-footer button:hover {
+    text-decoration: underline;
+}
+
+.dropdown-empty {
+    padding: 25px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.view-all-notifications {
+    display: block;
+    padding: 13px;
+    text-align: center;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.view-all-notifications:hover {
+    background: #eff6ff;
+}
+
+
+/* ==============================
+   SMALL SCREEN ADJUSTMENTS
+================================ */
+
+@media (max-width: 600px) {
+    .notifications-section {
+        padding: 12px;
+    }
+
+    .notifications-heading {
+        align-items: flex-start;
+    }
+
+    .notification-card {
+        padding: 12px;
+    }
+
+    .notification-dropdown {
+        right: -45px;
+        width: 320px;
+    }
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.notification-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0;
+}
+
+
+/* ===== Admin accounts tab ===== */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.badge-super    { background-color: #e3ecf5; color: #163a5f; }
+.badge-role     { background-color: #f0f2f5; color: #333333; }
+.badge-active   { background-color: #e3f3e8; color: #17693a; }
+.badge-inactive { background-color: #e5e7eb; color: #374151; }
+
+.danger-button {
+    background-color: #fdecea;
+    color: #a93226;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 18px;
+    cursor: pointer;
+}
+
+.danger-button:hover {
+    background-color: #f9d6d2;
+}
+
+.reactivate-button {
+    background-color: #e0e4ea;
+    color: #333333;
+}
+
+.reactivate-button:hover {
+    background-color: #cfd5de;
+}
+
+#adminTable button + button {
+    margin-left: 8px;
+}
+
+/* Same size as the Edit button in the table */
+#adminTable .danger-button {
+    padding: 6px 12px;
+}

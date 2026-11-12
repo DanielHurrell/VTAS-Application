@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTAS - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VTAS</h1>
+        <p>Visa Tracking and Application System</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/pages/login.html">Login</a>
+        <a href="/pages/register.html">Register</a>
+    </nav>
+
+    <main>
+        <h2>Login</h2>
+
+        <form action="/auth/login" method="POST">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </main>
+    <script src="/app.js" defer></script>
+</body>
+</html>

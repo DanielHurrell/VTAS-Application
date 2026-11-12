@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTAS - Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VTAS</h1>
+        <p>Visa Tracking and Application System</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="#dashboard" class="tab-link" data-tab="dashboard">Dashboard</a>
+        <a href="#applications" class="tab-link" data-tab="applications">Applications</a>
+        <a href="#reports" class="tab-link" data-tab="reports">Reports</a>
+        <a href="/auth/logout">Logout</a>
+    </nav>
+
+    <main>
+
+        <!-- ========== DASHBOARD TAB ========== -->
+        <section id="dashboard" class="tab">
+            <h2>Administrator Dashboard</h2>
+            <p>Welcome to the VTAS administration panel.</p>
+
+            <p id="dashboardMessage"></p>
+
+            <h3>Application Overview</h3>
+            <div class="summary">
+                <div class="summary-card">
+                    <span class="summary-label">Total Applications</span>
+                    <span class="summary-number" id="totalApplications">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Pending</span>
+                    <span class="summary-number" id="pendingCount">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Approved</span>
+                    <span class="summary-number" id="approvedCount">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Rejected</span>
+                    <span class="summary-number" id="rejectedCount">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Registered Applicants</span>
+                    <span class="summary-number" id="applicantCount">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Visas Expiring (30 days)</span>
+                    <span class="summary-number" id="expiringCount">0</span>
+                </div>
+            </div>
+
+            <h3>Recent Applications</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Applicant</th>
+                        <th>Visa Type</th>
+                        <th>Destination</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="recentApplications">
+                    <tr><td colspan="6">Loading...</td></tr>
+                </tbody>
+            </table>
+            <p><a href="#applications">Review applications</a></p>
+        </section>
+
+        <!-- ========== APPLICATIONS TAB ========== -->
+        <section id="applications" class="tab" hidden>
+            <h2>Review Applications</h2>
+
+            <div class="report-controls">
+                <label for="statusFilter">Show</label>
+                <select id="statusFilter">
+                    <option value="">All Applications</option>
+                    <option value="Submitted">Submitted</option>
+                    <option value="Under Review">Under Review</option>
+                    <option value="Additional Documents Required">Additional Documents Required</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+
+            <!-- Review panel (hidden until "Review" is clicked) -->
+            <div id="reviewPanel" class="review-panel" hidden>
+                <h3 id="reviewTitle">Application</h3>
+
+                <div class="details-grid">
+                    <div>
+                        <h4>Application</h4>
+                        <div id="applicationDetails"></div>
+                    </div>
+                    <div>
+                        <h4>Applicant</h4>
+                        <div id="applicantDetails"></div>
+                    </div>
+                    <div>
+                        <h4>Passport</h4>
+                        <div id="passportDetails"></div>
+                    </div>
+                    <div>
+                        <h4>Visa</h4>
+                        <div id="visaDetails"></div>
+                    </div>
+                </div>
+
+                <h4>Status History</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Changed By</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyList"></tbody>
+                </table>
+
+                <!-- Decision form (hidden for approved/rejected applications) -->
+                <form id="decisionForm">
+                    <h4>Make a Decision</h4>
+
+                    <label for="newStatus">New Status</label>
+                    <select id="newStatus" name="new_status" required>
+                        <option value="">Select a status</option>
+                        <option value="Under Review">Under Review</option>
+                        <option value="Additional Documents Required">Request Additional Documents</option>
+                        <option value="Approved">Approve</option>
+                        <option value="Rejected">Reject</option>
+                    </select>
+
+                    <!-- Only shown when "Approve" is chosen -->
+                    <div id="approvalFields" hidden>
+                        <label for="issueDate">Visa Issue Date</label>
+                        <input type="date" id="issueDate" name="issue_date">
+
+                        <label for="expiryDate">Visa Expiry Date</label>
+                        <input type="date" id="expiryDate" name="expiry_date">
+
+                        <label for="conditions">Visa Conditions (optional)</label>
+                        <textarea id="conditions" name="conditions"
+                                  placeholder="Employment with sponsoring company only"></textarea>
+                    </div>
+
+                    <label for="remarks">Remarks</label>
+                    <textarea id="remarks" name="remarks"
+                              placeholder="Required when rejecting or requesting documents"></textarea>
+
+                    <button type="submit" id="saveDecisionButton">Save Decision</button>
+                </form>
+
+                <p id="finalMessage" hidden>This application has been decided and can no longer be changed.</p>
+                <p id="decisionMessage"></p>
+
+                <button type="button" id="closeReviewButton" class="secondary-button">Close</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Applicant</th>
+                        <th>Visa Type</th>
+                        <th>Destination</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationTable">
+                    <tr><td colspan="7">Loading...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ========== REPORTS TAB ========== -->
+        <section id="reports" class="tab" hidden>
+            <h2>Reports</h2>
+
+            <div class="report-controls">
+                <label for="reportType">Report</label>
+                <select id="reportType">
+                    <option value="visas-expiring">Visas Expiring Soon</option>
+                    <option value="visas-expired">Expired Visas</option>
+                    <option value="passports-expiring">Passports Expiring Soon</option>
+                    <option value="applications-by-status">Applications by Status</option>
+                    <option value="applications-by-type">Applications by Visa Type</option>
+                    <option value="all-applications">All Applications</option>
+                </select>
+
+                <span id="daysBox">
+                    <label for="days">Within the next</label>
+                    <input type="number" id="days" value="30" min="1" max="365"> days
+                </span>
+
+                <button id="generateButton">Generate</button>
+                <button id="printButton">Print</button>
+                <button id="csvButton">Download CSV</button>
+            </div>
+
+            <h3 id="reportTitle"></h3>
+            <p id="reportInfo"></p>
+
+            <table>
+                <thead id="reportHead"></thead>
+                <tbody id="reportBody"></tbody>
+            </table>
+        </section>
+
+        <!-- ========== ADMINS TAB (super admin only) ========== -->
+        <section id="admins" class="tab" hidden>
+            <h2>Manage Administrators</h2>
+            <p id="adminsMessage"></p>
+
+            <div id="adminsContent">
+                <p>Create admin accounts and control who can sign in to the admin panel.</p>
+
+                <!-- Add a new admin -->
+                <div class="review-panel">
+                    <h3>Add a New Admin</h3>
+                    <form id="createAdminForm">
+                        <label for="newAdminName">Full Name</label>
+                        <input type="text" id="newAdminName" required>
+
+                        <label for="newAdminEmail">Email Address</label>
+                        <input type="email" id="newAdminEmail" required>
+
+                        <label for="newAdminPassword">Password (at least 8 characters)</label>
+                        <input type="password" id="newAdminPassword" minlength="8" required>
+
+                        <label for="newAdminConfirm">Confirm Password</label>
+                        <input type="password" id="newAdminConfirm" minlength="8" required>
+
+                        <button type="submit">Create Admin</button>
+                    </form>
+                </div>
+
+                <!-- Edit panel (hidden until "Edit" is clicked) -->
+                <div id="editAdminPanel" class="review-panel" hidden>
+                    <h3 id="editAdminTitle">Edit Admin</h3>
+
+                    <div class="details-grid">
+                        <form id="editAdminForm">
+                            <h4>Account Details</h4>
+                            <label for="editAdminName">Full Name</label>
+                            <input type="text" id="editAdminName" required>
+
+                            <label for="editAdminEmail">Email Address</label>
+                            <input type="email" id="editAdminEmail" required>
+
+                            <button type="submit">Save Changes</button>
+                        </form>
+
+                        <form id="resetPasswordForm">
+                            <h4>Reset Password</h4>
+                            <label for="resetAdminPassword">New Password (at least 8 characters)</label>
+                            <input type="password" id="resetAdminPassword" minlength="8" required>
+
+                            <label for="resetAdminConfirm">Confirm New Password</label>
+                            <input type="password" id="resetAdminConfirm" minlength="8" required>
+
+                            <button type="submit">Reset Password</button>
+                        </form>
+                    </div>
+
+                    <h4>Account Status</h4>
+                    <p id="editAdminStatusText"></p>
+                    <button type="button" id="toggleAdminButton" class="danger-button">Deactivate</button>
+
+                    <h4>Recent Activity</h4>
+                    <table>
+                        <thead>
+                            <tr><th>Date</th><th>Action</th><th>Details</th></tr>
+                        </thead>
+                        <tbody id="adminActivityList"></tbody>
+                    </table>
+
+                    <p id="editAdminMessage"></p>
+                    <button type="button" id="closeEditAdminButton" class="secondary-button">Close</button>
+                </div>
+
+                <div class="report-controls">
+                    <label for="adminFilter">Show</label>
+                    <select id="adminFilter">
+                        <option value="">All Admins</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Date Added</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTable">
+                        <tr><td colspan="6">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/app.js" defer></script>
+    <script src="/admin.js" defer></script>
+</body>
+</html>

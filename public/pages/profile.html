@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTAS - Applicant Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>VTAS</h1>
+        <p>Visa Tracking and Application System</p>
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/pages/dashboard.html">Dashboard</a>
+        <a href="/pages/profile.html">My Profile</a>
+        <a href="/auth/logout">Logout</a>
+    </nav>
+
+    <main>
+        <h2>Applicant Profile</h2>
+
+        <form id="profileForm">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" required>
+
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth">
+
+            <label for="nationality">Nationality</label>
+            <input type="text" id="nationality" name="nationality">
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address"></textarea>
+
+            <h2>Passport Details</h2>
+
+            <label for="passport_number">Passport Number</label>
+            <input type="text" id="passport_number" name="passport_number" required>
+
+            <label for="country_of_issue">Country of Issue</label>
+            <input type="text" id="country_of_issue" name="country_of_issue" required>
+
+            <label for="issue_date">Issue Date</label>
+            <input type="date" id="issue_date" name="issue_date" required>
+
+            <label for="expiry_date">Expiry Date</label>
+            <input type="date" id="expiry_date" name="expiry_date" required>
+
+            <button type="submit">Save Profile</button>
+        </form>
+
+        <p id="message"></p>
+    </main>
+
+    <script src="/app.js" defer></script>
+    <script src="/profile.js" defer></script>
+
+</body>
+</html>
